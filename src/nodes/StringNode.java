@@ -4,32 +4,45 @@ import nodeItem.NodeItem;
 
 public class StringNode extends NodeItem {
 
-    public StringNode(Object value) {
+    public StringNode(String value) {
         super(value);
     }
 
     @Override
     public int compareTo(NodeItem item) {
-        return 0;
+        int result = -1;
+        if (item != null && item.getValue() != null) {
+            String val = (String) super.getValue();
+            result = val.compareToIgnoreCase((String) item.getValue());
+        }
+
+        return result;
+    }
+
+
+    public String getValue() {
+        return (String) super.getValue();
     }
 
     @Override
     public NodeItem rightNode() {
-        return null;
+        return this.rightNode;
     }
 
     @Override
     public NodeItem leftNode() {
-        return null;
+        return this.leftNode;
     }
 
     @Override
     public NodeItem setRightNode(NodeItem rightNode) {
-        return null;
+        this.rightNode = rightNode;
+        return rightNode;
     }
 
     @Override
-    public NodeItem setLeftNode(NodeItem setPrevious) {
-        return null;
+    public NodeItem setLeftNode(NodeItem leftNode) {
+        this.leftNode = leftNode;
+        return leftNode;
     }
 }

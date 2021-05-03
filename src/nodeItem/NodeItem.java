@@ -26,7 +26,7 @@ public abstract class NodeItem {
 
     public abstract NodeItem setRightNode(NodeItem rightNode);
 
-    public abstract NodeItem setLeftNode(NodeItem setPrevious);
+    public abstract NodeItem setLeftNode(NodeItem leftNode);
 
 
 }
