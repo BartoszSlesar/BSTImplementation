@@ -17,10 +17,11 @@ public class TestMyBinarySearchTree {
         }
         tree.traverse(tree.rootObject());
 
-        tree.removeItem(new IntegerNode(14));
+        tree.removeItem(new IntegerNode(1));
 
         System.out.println("\n**********************************************************");
         tree.traverse(tree.rootObject());
+
 
     }
 }

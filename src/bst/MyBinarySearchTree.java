@@ -138,19 +138,13 @@ public class MyBinarySearchTree implements MyList {
 
     @Override
     public void traverse(NodeItem root) {
-        NodeItem leftNode = root.leftNode();
 
-        if (leftNode != null) {
-            System.out.println("LeftNode: " + leftNode.getValue());
-            traverse(leftNode);
+        if (root != null) {
+            traverse(root.leftNode());
+            System.out.println(root.getValue());
+            traverse(root.rightNode());
         }
 
-        NodeItem rightNode = root.rightNode();
-
-        if (rightNode != null) {
-            System.out.println("rightNode: " + rightNode.getValue());
-            traverse(rightNode);
-        }
     }
 
     @Override
