@@ -2,9 +2,9 @@ package nodes;
 
 import nodeItem.NodeItem;
 
-public class StringNode extends NodeItem {
+public class IntegerNode extends NodeItem {
 
-    public StringNode(String value) {
+    public IntegerNode(Integer value) {
         super(value);
     }
 
@@ -12,16 +12,16 @@ public class StringNode extends NodeItem {
     public int compareTo(NodeItem item) {
         int result = -1;
         if (item != null && item.getValue() != null) {
-            String val = (String) super.getValue();
-            result = val.compareToIgnoreCase((String) item.getValue());
+            Integer val = (int) super.getValue();
+            result = val.compareTo((Integer) item.getValue());
         }
 
         return result;
     }
 
 
-    public String getValue() {
-        return super.getValue() != null ? (String) super.getValue() : null;
+    public Integer getValue() {
+        return super.getValue() != null ? (int) super.getValue() : null;
     }
 
     @Override
