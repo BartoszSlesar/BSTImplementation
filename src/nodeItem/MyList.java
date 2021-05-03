@@ -9,7 +9,7 @@ public interface MyList {
 
     NodeItem lastObject();
 
-    void traverse();
+    void traverse(NodeItem root);
 
     int listSize();
 

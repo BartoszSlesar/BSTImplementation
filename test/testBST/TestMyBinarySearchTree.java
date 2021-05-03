@@ -15,7 +15,12 @@ public class TestMyBinarySearchTree {
         for (String s : values) {
             tree.addItem(new IntegerNode(Integer.parseInt(s)));
         }
+        tree.traverse(tree.rootObject());
 
+        tree.removeItem(new IntegerNode(14));
+
+        System.out.println("\n**********************************************************");
+        tree.traverse(tree.rootObject());
 
     }
 }

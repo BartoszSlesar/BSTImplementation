@@ -66,8 +66,8 @@ public class MyBinarySearchTree implements MyList {
             return null;
         }
 
-
-        return remove(null, this.root, item);
+        remove(null, this.root, item);
+        return item;
     }
 
     //    delete value, it returns successor subtree, otherwise null
@@ -82,44 +82,35 @@ public class MyBinarySearchTree implements MyList {
             currentNode.setRightNode(remove(currentNode, currentNode.rightNode(), toBeDeleted));
         } else {
 //            Is current node is equal, so this node should be deleted
-//            case1:
-            if (currentNode.rightNode() == null && currentNode.leftNode() == null) {
+//            case1 / case2:
+            if (currentNode.rightNode() == null || currentNode.leftNode() == null) {
+
+                NodeItem tmp = currentNode.rightNode() != null ? currentNode.rightNode() : currentNode.leftNode();
                 //  if this is first item in BST
                 if (ParentRoot == null) {
-                    this.root = null;
+                    this.root = tmp;
                 }
-                return null;
-            }
-//            case 2:
-            if (currentNode.rightNode() != null && currentNode.leftNode() == null) {
-                if (ParentRoot == null) {
-                    //     if this is first item in BST
-                    this.root = currentNode.rightNode();
-                }
-                return currentNode.rightNode();
-            } else if (currentNode.rightNode() == null && currentNode.leftNode() != null) {
-                if (ParentRoot == null) {
-                    //     if this is first item in BST
-                    this.root = currentNode.leftNode();
-                }
-                return currentNode.leftNode();
+                size--;
+                return tmp;
+
+
             } else {
 //                case 3: if there is left and right nodes
                 NodeItem replacement = findMinInRightSubTree(currentNode.rightNode(), currentNode.rightNode());
                 if (ParentRoot == null) {
                     //     if this is first item in BST
                     this.root.setValue(replacement.getValue());
-                    return remove(this.root, this.root.rightNode(), replacement);
+                    this.root.setRightNode(remove(this.root, this.root.rightNode(), replacement));
+                } else {
+                    currentNode.setValue(replacement.getValue());
+                    currentNode.setRightNode(remove(currentNode, currentNode.rightNode(), replacement));
                 }
-                currentNode.setValue(replacement.getValue());
-                return remove(currentNode, currentNode.rightNode(), replacement);
+
             }
 
         }
 
-
-        return null;
-
+        return currentNode;
     }
 
     private NodeItem findMinInRightSubTree(NodeItem currentNode, NodeItem currentMin) {
@@ -146,8 +137,20 @@ public class MyBinarySearchTree implements MyList {
     }
 
     @Override
-    public void traverse() {
+    public void traverse(NodeItem root) {
+        NodeItem leftNode = root.leftNode();
 
+        if (leftNode != null) {
+            System.out.println("LeftNode: " + leftNode.getValue());
+            traverse(leftNode);
+        }
+
+        NodeItem rightNode = root.rightNode();
+
+        if (rightNode != null) {
+            System.out.println("rightNode: " + rightNode.getValue());
+            traverse(rightNode);
+        }
     }
 
     @Override
