@@ -18,7 +18,32 @@ public class MyBinarySearchTree implements MyList {
 
     @Override
     public boolean addItem(NodeItem value) {
-        return false;
+        if (this.root == null) {
+            this.root = value;
+            return true;
+        }
+
+        return add(this.root, value);
+    }
+
+    private boolean add(NodeItem currentRoot, NodeItem value) {
+        int compare = currentRoot.compareTo(value);
+        if (compare > 0) {
+            if (currentRoot.rightNode() == null) {
+                currentRoot.setRightNode(value);
+                return true;
+            } else {
+                return add(currentRoot.rightNode(), value);
+            }
+        } else {
+            if (currentRoot.leftNode() == null) {
+                currentRoot.setLeftNode(value);
+                return true;
+            } else {
+                return add(currentRoot.leftNode(), value);
+            }
+        }
+
     }
 
     @Override
